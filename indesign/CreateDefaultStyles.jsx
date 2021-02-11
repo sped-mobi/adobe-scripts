@@ -65,33 +65,29 @@ function displayDialog() {
             minWidth: 100
         });
     }
-    var italicCheckBox;
-    var obliqueCheckBox;
-    var boldCheckBox;
-    var blackCheckBox;
     
     with(dialog.dialogColumns.add()) {
-            italicCheckBox = checkboxControls.add({
-                staticLabel: "Italic",
-                minWidth: 100,
-                checkedState: true
-            });
-             obliqueCheckBox = checkboxControls.add({
-                staticLabel: "Oblique",
-                minWidth: 100,
-                checkedState: true
-            });
-             boldCheckBox = checkboxControls.add({
-                staticLabel: "Bold",
-                minWidth: 100,
-                checkedState: true
-            });
-             blackCheckBox = checkboxControls.add({
-                staticLabel: "Black",
-                minWidth: 100,
-                checkedState: true
-            });
-        }
+        var italicCheckBox = checkboxControls.add({
+            staticLabel: "Italic",
+            minWidth: 100,
+            checkedState: true
+        });
+        var obliqueCheckBox = checkboxControls.add({
+            staticLabel: "Oblique",
+            minWidth: 100,
+            checkedState: true
+        });
+        var boldCheckBox = checkboxControls.add({
+            staticLabel: "Bold",
+            minWidth: 100,
+            checkedState: true
+        });
+        var blackCheckBox = checkboxControls.add({
+            staticLabel: "Black",
+            minWidth: 100,
+            checkedState: true
+        });
+    }
 
     var result = dialog.show();
     if (result){
@@ -158,29 +154,27 @@ function displayDialog() {
 }
 
 function createCharacterStyle(style_name, font_style){
-        var style;
-        try {
-                    style = app.activeDocument.characterStyles.item(style_name);
-                    var sn = style.name;
-        } catch (e){
-                    style =  app.activeDocument.characterStyles.add();
-                    style.properties = { name: style_name, fontStyle: font_style};
-                  
-        }
-        return style;
+    var style;
+    try {
+        style = app.activeDocument.characterStyles.item(style_name);
+        var sn = style.name;
+    } catch (e){
+        style =  app.activeDocument.characterStyles.add();
+        style.properties = { name: style_name, fontStyle: font_style};                
+    }
+    return style;
 }
 
 function createParagraphStyle(style_name){
-        var style;
-        try {
-                    style = app.activeDocument.paragraphStyles.item(style_name);
-                    var sn = style.name;
-        } catch (e){
-                    style =  app.activeDocument.paragraphStyles.add();
-                    style.properties = { name: style_name };
-                  
-        }
-        return style;
+    var style;
+    try {
+        style = app.activeDocument.paragraphStyles.item(style_name);
+        var sn = style.name;
+    } catch (e){
+        style =  app.activeDocument.paragraphStyles.add();
+        style.properties = { name: style_name };                 
+    }
+    return style;
 }
 
 function updateBodyStyleHyphenation(paragraphStyle){
@@ -194,55 +188,3 @@ function updateBodyStyleHyphenation(paragraphStyle){
     paragraphStyle.hyphenateAcrossColumns = false;
     paragraphStyle.hyphenateCapitalizedWords = false;
 }
-
-/*
-function createParagraphStyle(json){
-        var style;
-        try {
-                    style = app.activeDocument.paragraphStyles.item(json.name);
-                    var style_name = style.name;
-                    style.properties = json;
-        } catch (e){
-                    style = app.activeDocument.paragraphStyles.add(json);
-        }
-        return style;
-}
-
-
-function createParagraphStyle(styleName, basedOn, fontStyle, pointSize){
-    var document = app.activeDocument;
-    var paragraphStyle = document.paragraphStyles.add(styleName);
-    try{
-        paragraphStyle.name;
-    }
-    catch (myError) {
-        paragraphStyle = document.paragraphStyles.add({name: styleName});
-    }
-
-    // Hyphenation Settings
-    if (basedOn != null){
-        paragraphStyle.basedOn = basedOn;
-    }
-    if (pointSize != null){
-        paragraphStyle.pointSize = pointSize;
-    }
-    if (fontStyle != null){
-        paragraphStyle.fontStyle = fontStyle;
-    }
-    paragraphStyle.hyphenation = true;
-    paragraphStyle.hyphenWeight = 10; 
-    paragraphStyle.hyphenateWordsLongerThan = 7;
-    paragraphStyle.hyphenateAfterFirst = 5;
-    paragraphStyle.hyphenateBeforeLast = 4;
-    paragraphStyle.hyphenateLadderLimit = 1;
-    paragraphStyle.hyphenateLastWord = false;
-    paragraphStyle.hyphenateAcrossColumns = false;
-    paragraphStyle.hyphenateCapitalizedWords = false;
-
-    return paragraphStyle
-   
-
-
-}
-
-*/
